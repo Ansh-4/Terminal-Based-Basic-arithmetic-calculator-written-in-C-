@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 int main()
 {
     //declaring the operator variable and operands variables
@@ -6,158 +7,212 @@ int main()
     int a, b, c, d, e, f;
     char op1;
     int result;
+    int rows, cols;
+    int choice01, choice02;
+    int i, j, k;
+    int el1, el2;
+
+    int ma[100][100]; 
+    int mb[100][100];
+    int sm[100][100];
 
     //Basic info and rules for the calc program
 
-    printf("This calculator can only perform basic arthmetic operations and is limited to 6 maximum operands.\n");
-    
-    printf(" NOTE - The operators will work in order of the operands entered.\n");
+    printf("===== Welcome to the Multi-Function Calculator =====\n");
+    printf("This calculator can perform basic arithmetic operations and matrix operations (addition only for now).\n");
+    printf("NOTE - The operators will work in the order the operands are entered.\n");
+    printf("You can enter up to 6 operands in arithmetic mode.\n\n");
 
-    //taking input for the first two operands and a single operator
     //input for operands
-
-    printf("Enter the first operand:");
-    scanf("%d",&a);
-
-    while ((getchar()) != '\n');//flush line
-
-    //input for operator
-
-    printf("Enter operator of your choice: -, +, /, X:");
-    scanf(" %c",&op1);
+    printf("Choose the type of problem you want to solve:\n");
+    printf("1 - Matrix Sum and Multiplication\n");
+    printf("2 - Arithmetic Operations\n");
+    printf("Enter your choice (1 or 2): ");
+    scanf("%d", &choice01);
 
     while ((getchar()) != '\n');
 
-    printf("Enter the second operand:");
-    scanf("%d",&b);
+    //different options using if and else
 
-    while ((getchar()) != '\n');
+    switch(choice01) {
+        case 1:
+            printf("\nEnter 1 for Matrix Addition\n");
+            printf("Enter 2 for Matrix Multiplication\n");
+            printf("Enter your choice: ");
+            scanf("%d", &choice02);
 
-    //calculation for the fist two input operands
-    //using if and else statements
+            if (choice02 == 1) {
+                printf("\nEnter the number of rows for the matrix: ");
+                scanf("%d", &rows);
+                while ((getchar()) != '\n');
 
-    result=a;
-    if (op1=='+')
-    result+=b;
-    else if (op1=='-')
-    result-=b;
-    else if (op1=='/')
-    result/=b;
-    else if (op1=='X')
-    result*=b;
-    else{
-        printf("Invalid operator.\n");
-        return 1;
-    }
-    
-    //declaring operator 2 and choice 1 and choice 2
-    char op2, op3, op4;
-    char choice1, choice2, choice3;
-    
-    //asking the user whether they want a 3rd operand or not
+                printf("Enter the number of columns for the matrix: ");
+                scanf("%d", &cols);
+                while ((getchar()) != '\n');
 
-    printf("Do you want a thrid operand : Y/N.\n");
-    scanf(" %c",&choice1);
+                printf("\nEnter the elements of Matrix A (%d x %d):\n", rows, cols);
+                for (i = 0; i < rows; i++) {
+                    for (j = 0; j < cols; j++) {
+                        scanf("%d", &ma[i][j]);
+                    }
+                }
 
-    while ((getchar()) != '\n'); //flush line
+                //input for matrix b
+                printf("\nEnter the elements of Matrix B (%d x %d):\n", rows, cols);
+                for (i = 0; i < rows; i++) {
+                    for (j = 0; j < cols; j++) {
+                        scanf("%d", &mb[i][j]);
+                    }
+                }
 
-    //usinng if and else statments with logical operators
+                for (i = 0; i < rows; i++) {
+                    for (j = 0; j < cols; j++) {
+                        sm[i][j] = ma[i][j] + mb[i][j];
+                    }
+                }
 
-    if(choice1=='Y'|| choice1=='y'){
-        //input for the operator in between the second operand and the third operand
-        printf("Enter the operator: +, -, /, X:");
-        scanf(" %c",&op2);
-        while ((getchar()) != '\n');
+                printf("\nResultant Matrix (A + B):\n");
+                for (i = 0; i < rows; i++) {
+                    for (j = 0; j < cols; j++) {
+                        printf("%d\t", sm[i][j]);
+                    }
+                    printf("\n");
+                }
+            }
+            else if (choice02 == 2) {
+                printf("\nMatrix multiplication is still in development.\n");
+            }
+            else {
+                printf("\nInvalid input.\n");
+            }
+            break;
 
-        //input for third operand
+        case 2:
+            //arithmetic
 
-        printf("Enter the third operand:");
-        scanf("%d",&c);
-        while ((getchar()) != '\n');//flash line
-
-        //using if and else statements for calculations and result
-
-        if (op2=='+')
-        result+=c;
-        else if (op2=='-')
-        result-=c;
-        else if (op2=='/')
-        result/=c;
-        else if (op2=='X')
-        result*=c;
-        else{
-            printf("invalid input.\n");
-            return 1;
-        
-        }
-
-        //asking for the fourth operand
-        printf("Do you want a fourth operator : Y/N :");
-        scanf(" %c",&choice2);
-        while ((getchar()) != '\n'); //flash line
-
-        if(choice2=='Y' || choice2=='y'){
-            //input the operator between the third operand and the fourth operand
-            printf("Enter the operator : +, -, /, X :");
-            scanf(" %c",&op3);
+            printf("\nEnter the first operand: ");
+            scanf("%d", &a);
             while ((getchar()) != '\n');
 
-            //input the 4th operand
+            //input for operator
+            printf("Enter operator (+, -, /, X): ");
+            scanf(" %c", &op1);
+            while ((getchar()) != '\n');
 
-            printf("Enter the fourth operand :");
-            scanf("%d",&d);
-            while ((getchar()) != '\n'); //flash ;line
-            
-            //if and else statements used for the result 
+            printf("Enter the second operand: ");
+            scanf("%d", &b);
+            while ((getchar()) != '\n');
 
-            if (op3 == '+') result += d;
-            else if (op3 == '-') result -= d;
-            else if (op3 == 'X') result *= d;
-            else if (op3 == '/') result /= d;
+            //calculation for the fist two input operands
+            //using if and else statements
+
+            result = a;
+            if (op1 == '+')
+                result += b;
+            else if (op1 == '-')
+                result -= b;
+            else if (op1 == '/')
+                result /= b;
+            else if (op1 == 'X')
+                result *= b;
             else {
-                printf("Invalid operator.\n");
+                printf("\nInvalid operator.\n");
                 return 1;
             }
 
-            //asking for the last operand
-            printf("Do you want a fifth (last) operand : Y/N :");
-            scanf(" %c",&choice3);
+            //declaring operator 2 and choice 1 and choice 2
+            char op2, op3, op4;
+            char choice1, choice2, choice3;
+
+            //asking the user whether they want a 3rd operand or not
+            printf("\nDo you want a third operand? (Y/N): ");
+            scanf(" %c", &choice1);
             while ((getchar()) != '\n');
 
-            //using if and else
+            //usinng if and else statments with logical operators
 
-            if(choice3=='Y'||choice3=='y'){
-                //input operator between the fourth operator and the fifth operator
-                printf("Enter the operator: -, +, /, X:");
-                scanf(" %c",&op4);
-                while ((getchar()) != '\n'); //flash line
-
-                //input the last operand
-                printf("Enter the fifth operand:");
-                scanf("%d",&e);
+            if (choice1 == 'Y' || choice1 == 'y') {
+                printf("Enter operator (+, -, /, X): ");
+                scanf(" %c", &op2);
                 while ((getchar()) != '\n');
 
-                //using if and else
-                
-                if(op4=='+')
-                result+=e;
-                else if (op4=='-')
-                result-=e;
-                else if (op4=='/')
-                result/=e;
-                else if (op4=='X')
-                result*=e;
-                else{
-                    printf("invalid operator.\n");
+                printf("Enter the third operand: ");
+                scanf("%d", &c);
+                while ((getchar()) != '\n');
+
+                if (op2 == '+')
+                    result += c;
+                else if (op2 == '-')
+                    result -= c;
+                else if (op2 == '/')
+                    result /= c;
+                else if (op2 == 'X')
+                    result *= c;
+                else {
+                    printf("\nInvalid operator.\n");
                     return 1;
                 }
 
-                
+                printf("\nDo you want a fourth operand? (Y/N): ");
+                scanf(" %c", &choice2);
+                while ((getchar()) != '\n');
 
+                if (choice2 == 'Y' || choice2 == 'y') {
+                    printf("Enter operator (+, -, /, X): ");
+                    scanf(" %c", &op3);
+                    while ((getchar()) != '\n');
 
-        }
+                    printf("Enter the fourth operand: ");
+                    scanf("%d", &d);
+                    while ((getchar()) != '\n');
+
+                    if (op3 == '+') result += d;
+                    else if (op3 == '-') result -= d;
+                    else if (op3 == 'X') result *= d;
+                    else if (op3 == '/') result /= d;
+                    else {
+                        printf("\nInvalid operator.\n");
+                        return 1;
+                    }
+
+                    printf("\nDo you want a fifth (last) operand? (Y/N): ");
+                    scanf(" %c", &choice3);
+                    while ((getchar()) != '\n');
+
+                    if (choice3 == 'Y' || choice3 == 'y') {
+                        printf("Enter operator (+, -, /, X): ");
+                        scanf(" %c", &op4);
+                        while ((getchar()) != '\n');
+
+                        printf("Enter the fifth operand: ");
+                        scanf("%d", &e);
+                        while ((getchar()) != '\n');
+
+                        if (op4 == '+')
+                            result += e;
+                        else if (op4 == '-')
+                            result -= e;
+                        else if (op4 == '/')
+                            result /= e;
+                        else if (op4 == 'X')
+                            result *= e;
+                        else {
+                            printf("\nInvalid operator.\n");
+                            return 1;
+                        }
+                    }
+                }
+            }
+
+            printf("\n=== Final Result: %d ===\n", result);
+            break;
+
+        default:
+            printf("\nInvalid input.\n");
+            break;
     }
-    printf("Final result: %d\n", result);
+
     return 0;
-    }
+}
+
 }

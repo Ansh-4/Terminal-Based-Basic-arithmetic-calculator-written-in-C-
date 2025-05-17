@@ -15,6 +15,8 @@ int main()
     int ma[100][100]; 
     int mb[100][100];
     int sm[100][100];
+    int r1, r2, c1, c2;
+    int Result[100][100];
 
     //Basic info and rules for the calc program
 
@@ -27,6 +29,8 @@ int main()
     printf("Choose the type of problem you want to solve:\n");
     printf("1 - Matrix Sum and Multiplication\n");
     printf("2 - Arithmetic Operations\n");
+    printf("3 - Checking if the number is prime or not\n");
+    printf("4 - Calculating factorial of a number\n");
     printf("Enter your choice (1 or 2): ");
     scanf("%d", &choice01);
 
@@ -80,7 +84,73 @@ int main()
                 }
             }
             else if (choice02 == 2) {
-                printf("\nMatrix multiplication is still in development.\n");
+                printf("\nEnter the number of rows for the Matrix A: ");
+                scanf("%d", &r1);
+                while ((getchar()) != '\n');
+                printf("\nEnter the number of columns for the matrix A:");
+                scanf("%d",&c1);
+                while ((getchar()) != '\n'); // flash line
+
+                printf("\nEnter the number of rows for the Matrix B:");
+                scanf("%d",&r2);
+                while ((getchar()) != '\n'); // flash line
+
+
+                printf("\nEnter the number of columns for the Matrix B: ");
+                scanf("%d", &c2);
+                while ((getchar()) != '\n');
+
+                if(c1!=r2){
+                    printf("Error: Column of first matrix must equal row of second matrix.\n");
+                    return 1;
+                }
+
+
+                //input matrix a 
+                printf("\nEnter the elements of Matrix A :");
+                for(i=0;i<r1;i++){
+                    for(j=0;j<c1;j++){
+                        scanf("%d",&ma[i][j]);
+                    }
+                }
+
+                //input matrix b
+                printf("\nEnter the elements of Matrix B :");
+                for(i=0;i<r2;i++){
+                    for(j=0;j<c2;j++){
+                        scanf("%d",&mb[i][j]);
+                    }
+                }
+
+                //multiplication of matrices
+
+                for(int i=0;i<r1;i++){
+                    for(int j=0;j<c2;j++){
+                        Result[i][j]=0;
+                    }
+                }
+
+                
+                for(i=0;i<r1;i++){
+                    for(j=0;j<c2;j++){
+                        for(int k=0;k<c1;k++){
+                            Result[i][j]+=ma[i][k]*mb[k][j];
+                        }
+                    }
+                }
+
+                //result
+                printf("\nmultiple of the Matrices A and B will be:");
+                for(i=0;i<r1;i++){
+                    for(j=0;j<c2;j++){
+                        printf("%d\t\n",Result[i][j]);
+                    }
+                    printf("\n");
+                }
+                return 0;
+
+
+
             }
             else {
                 printf("\nInvalid input.\n");

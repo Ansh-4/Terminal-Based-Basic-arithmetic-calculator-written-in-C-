@@ -1,4 +1,4 @@
-# Terminal-Based-Basic-arithmetic-calculator-written-in-C-
+# Terminal-Based-calculator-written-in-C-
 
 
 This is a simple command-line calculator written in C (`calc1.c`) that performs basic arithmetic operations (`+`, `-`, `*`, `/`) on up to **five operands**. The calculator processes operations in the exact order entered by the user, without applying operator precedence.
